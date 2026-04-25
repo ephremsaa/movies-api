@@ -55,12 +55,12 @@ function sendJSON(res, statusCode, payload) {
 function parseBody(req) {
     return new Promise((resolve, reject) => {
         let body = '';
-        
+
         // Listen for data chunks
         req.on('data', chunk => {
             body += chunk.toString();
         });
-        
+
         // When all data is received
         req.on('end', () => {
             if (!body) {
@@ -73,7 +73,7 @@ function parseBody(req) {
                 reject(new Error('Invalid JSON input'));
             }
         });
-        
+
         // Handle errors
         req.on('error', error => reject(error));
     });
